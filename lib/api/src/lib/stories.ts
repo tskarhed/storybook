@@ -2,6 +2,7 @@ import deprecate from 'util-deprecate';
 import dedent from 'ts-dedent';
 import { sanitize, parseKind } from '@storybook/csf';
 import merge from './merge';
+import { InceptionRef } from '../modules/refs';
 
 export type StoryId = string;
 
@@ -36,6 +37,8 @@ export interface Story {
   parent: StoryId;
   name: string;
   kind: string;
+  knownAs?: StoryId;
+  ref?: InceptionRef;
   children?: StoryId[];
   isComponent: false;
   isRoot: false;
@@ -53,6 +56,8 @@ export interface Story {
 export interface StoryInput {
   id: StoryId;
   name: string;
+  knownAs?: StoryId;
+  ref?: InceptionRef;
   kind: string;
   children: string[];
   parameters: {
